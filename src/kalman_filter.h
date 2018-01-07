@@ -3,6 +3,11 @@
 #include "Eigen/Dense"
 
 class KalmanFilter {
+private:
+
+  // update uncertainty covariance matrix of state x (process covariance)
+  void UpdateP(Eigen::VectorXd &y);
+
 public:
 
   // state vector

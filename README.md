@@ -11,7 +11,7 @@ Once the install for uWebSocketIO is complete, the main program can be built and
 
 1. mkdir build
 2. cd build
-3. cmake ..
+3. cmake -G"Eclipse CDT4 - Unix Makefiles" -D CMAKE_BUILD_TYPE=Debug ../src/
 4. make
 5. ./ExtendedKF
 
