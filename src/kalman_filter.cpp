@@ -63,10 +63,10 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   const float TWO_PI = 2 * M_PI;
 
   // normalizing angle in resulting angle phi (radar measurements under index 1)
-  if(y(1) > M_PI) {
+  while(y(1) > M_PI) {
     y(1) -= TWO_PI;
   }
-  else if(y(1) < -M_PI) {
+  while(y(1) < -M_PI) {
     y(1) += TWO_PI;
   }
 
@@ -75,9 +75,9 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
 void KalmanFilter::UpdateP(Eigen::VectorXd &y) {
   MatrixXd Ht = H_.transpose();
-  MatrixXd S = H_ * P_ * Ht + R_;
-  MatrixXd Si = S.inverse();
   MatrixXd PHt = P_ * Ht;
+  MatrixXd S = H_ * PHt + R_;
+  MatrixXd Si = S.inverse();
   MatrixXd K = PHt * Si;
 
   //new estimate
